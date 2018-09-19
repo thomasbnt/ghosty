@@ -1,0 +1,8 @@
+{
+    "token": "TOKEN OF YOUR BOT",
+    "prefix": ";",
+    "hookArray1" : "KEY OPTIONNAL FOR LOGS",
+    "hookArray2" : "KEY PRIVATE OPTIONNAL FOR LOGS",
+    "tokendiscordbotlistcom" : "YOUR TOKEN OF DISCORD BOT COM",
+    "versionofthebot": "My Version"
+}
