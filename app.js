@@ -128,7 +128,7 @@ bot.on('message', (msg) => {
 
 
     // Stats
-    if (msg.content.startsWith(prefix + " stats")) {
+    if (msg.content.startsWith(prefix + "stats")) {
         if(msg.channel.recipient) return
         console.log("Stats for ".red + msg.author.username + " (" + msg.author + ")" );
         var hookyEmbed = new Discord.RichEmbed();
