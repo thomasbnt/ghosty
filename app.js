@@ -9,7 +9,7 @@ const moment = require('moment');
 const snekfetch = require('snekfetch');
 
 try {
-    const config = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'config.json'), 'utf8'))
+    var config = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'config.json'), 'utf8'))
     } catch (err) {
     if (err) throw Error('Error config.')
 }
