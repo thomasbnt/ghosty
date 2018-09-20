@@ -9,20 +9,20 @@ const moment = require('moment');
 const snekfetch = require('snekfetch');
 
 try {
-    var config = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'config.json'), 'utf8'))
+    const config = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'config.json'), 'utf8'))
     } catch (err) {
     if (err) throw Error('Error config.')
 }
-let TOKEN = config.token
-let hookArray1 = config.hookArray1
-let hookArray2 = config.hookArray2
-let tokendiscordbotlistcom = config.tokendiscordbotlistcom
-let versionofthebot = config.versionofthebot
-let prefix = config.prefix
+const TOKEN = config.token
+const hookArray1 = config.hookArray1
+const hookArray2 = config.hookArray2
+const tokendiscordbotlistcom = config.tokendiscordbotlistcom
+const versionofthebot = config.versionofthebot
+const prefix = config.prefix
 
 // Webhooks logs for the creator of the bot
 const hook = new Discord.WebhookClient(hookArray1, hookArray2);
-var hookArray = [hookArray1,hookArray2];
+const hookArray = [hookArray1,hookArray2];
 
 
 bot.on("guildCreate", guild => {
@@ -43,7 +43,7 @@ bot.on("guildCreate", guild => {
     guild.createEmoji('favicon.png', 'ghosty').catch(e => console.info('Error : Missing perms for create emoji Ghosty.'));
 
     bot.user.setGame(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  Users 🎃");
-    var hookyEmbed = new Discord.RichEmbed();
+    const hookyEmbed = new Discord.RichEmbed();
     hook.send(
       hookyEmbed
           .addField(":ghost:       Added on : ","``" + guild.name + "`` ( "+ guild.id + " )",true)
@@ -66,7 +66,7 @@ bot.on("guildDelete", guild => {
     console.log("There are  " + bot.guilds.size.toLocaleString()  + " servers connected -  "  + bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + " users");
     console.log("");
     bot.user.setGame(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  Users 🎃");
-    var hookyEmbed = new Discord.RichEmbed();
+    const hookyEmbed = new Discord.RichEmbed();
     hook.send(
       hookyEmbed
           .addField(":jack_o_lantern:      Bot deleted on : ","``" + guild.name + "`` ( "+ guild.id + " )",true)
@@ -77,7 +77,7 @@ bot.on("guildDelete", guild => {
 
 bot.on("guildMemberAdd", (member) => {
     const guild = member.guild;
-    var embed = new Discord.RichEmbed();
+    const embed = new Discord.RichEmbed();
     bot.user.setGame(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  Users 🎃");
     console.log(`>_ ${member.user.username}#${member.user.discriminator} join ${guild.name}`.green);
 });
@@ -115,12 +115,6 @@ bot.on('ready', () => {
 
 bot.on('message', (msg) => {
 
-// Importants vars
-let msgContent = msg.content
-let msgUser = msg.author
-let msgMember = msg.member
-let msgChannel = msg.channel
-
     if (msg.author.bot) return;
 
     // -------------------------------------------------------------------------------------
@@ -131,15 +125,17 @@ let msgChannel = msg.channel
     //
     //
     // -------------------------------------------------------------------------------------
+
+
     // Stats
-    if (msgContent.startsWith(prefix + " stats")) {
-        if(msgChannel.recipient) return
+    if (msg.content.startsWith(prefix + " stats")) {
+        if(msg.channel.recipient) return
         console.log("Stats for ".red + msg.author.username + " (" + msg.author + ")" );
         var hookyEmbed = new Discord.RichEmbed();
         hook.send(
             hookyEmbed
-                .addField("Stats by",msgUser + " - ``"  + msgUser.username + "#"+ msgUser.discriminator + "`` from ``" + msg.guild.name + "``",true)
-                .setThumbnail(msgUser.avatarURL)
+                .addField("Stats by",msg.author + " - ``"  + msg.author.username + "#"+ msg.author.discriminator + "`` from ``" + msg.guild.name + "``",true)
+                .setThumbnail(msg.author.avatarURL)
                 .setColor(0xe67e22)
         )
         const embed = {
@@ -172,16 +168,11 @@ let msgChannel = msg.channel
                 }
             ]
           };
-          msgChannel.send({ embed });
+          msg.channel.send({ embed });
 
     }
 
-
-
-
-
-
-    var responseObject = {
+    const responseObject = {
         "booo": "**" + msg.author.username + "** BOOOOOOO! :ghost:"
       };
       if(responseObject[msg.content.toLowerCase()]) {
@@ -194,7 +185,7 @@ let msgChannel = msg.channel
     }
     // Ghost
     if(msg.content.startsWith("")) {
-        var words = msg.content;
+        const words = msg.content;
         if(/g+h+o+s+t+/i.test(words)) {
             if(/^g+h+o+s+t+$/i.test(words)) {
                 msg.react("👻");
@@ -211,7 +202,7 @@ let msgChannel = msg.channel
     }
     // Jack
     if(msg.content.startsWith("")) {
-        var words = msg.content;
+        const words = msg.content;
         if(/j+a+c+k+/i.test(words)) {
             if(/^j+a+c+k+$/i.test(words)) {
                 msg.react("🎃");
