@@ -105,6 +105,10 @@ bot.on('ready', () => {
    .then(console.log('Updating discordbotlist.com status...'))
    .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
 
+   // set username and avatar
+    bot.user.setUsername("Ghosty - NesDev")
+    bot.user.setAvatar("./favicon.png")
+
     // SetActivity
     bot.user.setActivity(`dsc.thomasbnt.fr for support`, { type: 'WATCHING' })
     .catch(console.error);
@@ -129,6 +133,10 @@ bot.on('ready', () => {
         `${"> Numbers of emojis :      ".cyan} ${bot.emojis.size}\n`,
         `${"> Version :                ".yellow} ${versionofthebot}\n`
     )
+    
+    setInterval(x => {
+        suprise();
+    }, 300000)
 });
 
 bot.on('message', (msg) => {
@@ -231,5 +239,18 @@ bot.on('message', (msg) => {
         }
     }
 });
+
+// Random words in random time
+function suprise() {
+    const channel = bot.channels.find(x => x.name === 'general');
+
+    let words = ['Des bonbons ou un sort', 'Bouh un fantome se cache sous ton lit', 'Attention la nuit tombe vite et le monstres frappe fort']
+
+    let random = Math.floor(Math.random() * Math.floor(3)); 
+
+    channel.send(words[random]);
+    
+}
+
 
 bot.login(TOKEN);
