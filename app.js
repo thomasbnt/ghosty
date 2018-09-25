@@ -10,7 +10,7 @@ const moment = require('moment');
 const snekfetch = require('snekfetch');
 
 try {
-    var config = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'config.json'), 'utf8'))
+    const config = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'config.json'), 'utf8'))
     } catch (err) {
     if (err) throw Error('Error config.')
 }
@@ -136,7 +136,7 @@ bot.on('ready', () => {
     
     setInterval(x => {
         suprise();
-    }, 300000)
+    }, 450000)
 });
 
 bot.on('message', (msg) => {
@@ -242,13 +242,17 @@ bot.on('message', (msg) => {
 
 // Random words in random time
 function suprise() {
-    const channel = bot.channels.find(x => x.name === 'general');
+    let channel = bot.channels.find(x => x.name === 'general');
 
-    let words = ['Des bonbons ou un sort', 'Bouh un fantome se cache sous ton lit', 'Attention la nuit tombe vite et le monstres frappe fort']
+    try {
+        const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
+        } catch (err) {
+        if (err) throw Error('Error words.json not found.')
+    }
 
     let random = Math.floor(Math.random() * Math.floor(3)); 
 
-    channel.send(words[random]);
+    channel.send(words.list[random]);
     
 }
 
