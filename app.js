@@ -181,7 +181,7 @@ bot.on('message', (msg) => {
 
     // Ghosty
     if(msg.content == "ghosty"){
-        msg.react('<:ghosty:478615972216045568>');
+        msg.react('478615972216045568');
     }
     // Ghost
     if(msg.content.startsWith("")) {
