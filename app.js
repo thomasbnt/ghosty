@@ -207,7 +207,7 @@ bot.on('message', (msg) => {
 
     // Ghosty
     if(msg.content == "ghosty"){
-        msg.channel.send('<:ghosty:478615972216045568>');
+        msg.react('478615972216045568');
     }
     
     if(msg.content.startsWith("")) {
