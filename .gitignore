@@ -62,3 +62,5 @@ typings/
 # configuration file
 config.json
 
+
+\.vscode/
