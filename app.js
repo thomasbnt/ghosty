@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client({autoReconnect: true});
 const colors = require("colors");
-const consola = require("consola")
-const fs = require('fs')
-const path = require('path')
-const os = require('os')
+const consola = require("consola");
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
 const randomcolor = require('randomcolor');
 const moment = require('moment');
 const snekfetch = require('snekfetch');
@@ -36,7 +36,7 @@ bot.on("guildCreate", guild => {
      guilds: bot.guilds.size
     })
     .then(console.log('Updating discordbotlist.com status...'))
-    .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
+    .catch(e => consola.error('https://discordbotlist.com unavailable or token invalid.'));
    
 
     console.log(
@@ -64,7 +64,7 @@ bot.on("guildDelete", guild => {
      guilds: bot.guilds.size
     })
     .then(console.log('Updating discordbotlist.com status...'))
-    .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
+    .catch(e => consola.error('https://discordbotlist.com unavailable or token invalid.'));
    
     console.log(
         `Bot deleted on : ${guild.name} (${guild.id})`.bgRed,
@@ -103,12 +103,12 @@ bot.on('ready', () => {
     guilds: bot.guilds.size
    })
    .then(console.log('Updating discordbotlist.com status...'))
-   .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
+   .catch(e => consola.error('https://discordbotlist.com unavailable or token invalid.'));
 
-   // set username and avatar
-    bot.user.setUsername("Ghosty - NesDev")
-    bot.user.setAvatar("./favicon.png")
+    //bot.user.setUsername("Ghosty")
+    //bot.user.setAvatar("./favicon.png")
 
+   
     // SetActivity
     bot.user.setActivity(`dsc.thomasbnt.fr for support`, { type: 'WATCHING' })
     .catch(console.error);
@@ -154,6 +154,44 @@ bot.on('message', (msg) => {
 
 
     // Stats
+    if (msg.content.startsWith(prefix + "help")) {
+        if(msg.channel.recipient) return
+        console.log("help for ".red + msg.author.username + " (" + msg.author + ")" );
+        var hookyEmbed = new Discord.RichEmbed();
+        hook.send(
+            hookyEmbed
+                .addField("help by",msg.author + " - ``"  + msg.author.username + "#"+ msg.author.discriminator + "`` from ``" + msg.guild.name + "``",true)
+                .setThumbnail(msg.author.avatarURL)
+                .setColor(0xe67e22)
+        )
+        const embed = {
+            "description": "Hello it's me, Ghosty! I add fun commands like random texts, animation in the servers and I like the reactions! I do not add a moderation command, I am only useful for the Halloween event. ",
+            "color": 13319958,
+            "footer": {
+              "icon_url": "https://ghosty.thomasbnt.fr/assets/img/img-head.png",
+              "text": "I'm a Ghost-y, my role? I must be scary"
+            },
+            "thumbnail": {
+              "url": "https://ghosty.thomasbnt.fr/assets/img/img-head.png"
+            },
+            "fields": [
+              {
+                "name": prefix + "stats",
+                "value": "Look at my statistics, numbers everywhere !"
+              },
+              {
+                "name": prefix + "ping",
+                "value": "try exceeding some of them!"
+              },
+              {
+                "name": "Usefull links",
+                "value": "[Website](https://ghosty.thomasbnt.fr/?utm_source=Direct_link_command_help) • [Add me](https://ghosty.thomasbnt.fr/add/?utm_source=Direct_link_command_help) • [Upvote on DBL](https://discordbotlist.com/bots/369202881955495936) • [GitHub](https://github.com/thomasbnt/ghosty) • [Contributors](https://github.com/thomasbnt/ghosty#contributors)"
+              }
+            ]
+          };
+          msg.channel.send({ embed });
+    };
+    // Stats
     if (msg.content.startsWith(prefix + "stats")) {
         if(msg.channel.recipient) return
         console.log("Stats for ".red + msg.author.username + " (" + msg.author + ")" );
@@ -180,17 +218,12 @@ bot.on('message', (msg) => {
                 {
                     "name": "Uptime  ",
                     "value": (Math.round(bot.uptime / (1000 * 60 * 60))) + " hour(s), " + (Math.round(bot.uptime / (1000 * 60)) % 60) + " minute(s), and " + (Math.round(bot.uptime / 1000) % 60) + " second(s)" + "",
-                    "inline": false
+                    "inline": true
                 },
                 {
                     "name": "Version  ",
-                    "value": "V " + versionofthebot + "",
-                    "inline": false
-                },
-                {
-                    "name": "More soon !",
-                    "value": "Don't worry, the bot will be online for halloween event 2o18 !",
-                    "inline": false
+                    "value": versionofthebot + "",
+                    "inline": true
                 }
             ]
           };
@@ -207,7 +240,12 @@ bot.on('message', (msg) => {
 
     // Ghosty
     if(msg.content == "ghosty"){
-        msg.react('478615972216045568');
+        msg.react('494953448081588240').catch(e => console.error("Error with ghosty reaction"));
+    }
+    try {
+        const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
+        } catch (err) {
+        if (err) throw Error('Error words.json not found.')
     }
     
     if(msg.content.startsWith("")) {
@@ -224,7 +262,7 @@ bot.on('message', (msg) => {
                     msg.react("👻");
                 }
             }
-        }else if(/j+a+c+k+/i.test(words)) { // Jacki
+        }else if(/j+a+c+k+/i.test(words)) { // Jack
             if(/^j+a+c+k+$/i.test(words)) {
                 msg.react("🎃");
             } else if(/^j+a+c+k+/i.test(words)) {

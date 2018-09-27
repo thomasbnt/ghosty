@@ -44,11 +44,11 @@ npm start
 * [Discord.js](https://discord.js.org/#/) - A powerful JavaScript library for interacting with the Discord API 
 * [npm colors](https://www.npmjs.com/package/colors) - Get color and style in your node.js console
 
-## Authors
+## Contributors
 
 * **Thomas Bnt** - *Initial work* - [Github](https://github.com/thomasbnt) - [Website](https://thomasbnt.fr/)
 
-* **Reseqo64** - *help for emojies scripts* [Github](https://github.com/Reseqo64)
+* **UndeadNinjaBit** - *for edited the icon* [Github](https://github.com/UndeadNinjabit)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
