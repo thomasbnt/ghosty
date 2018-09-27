@@ -139,7 +139,7 @@ bot.on('ready', () => {
     }, 450000)
 });
 
-bot.on('message', (msg) => {
+bot.on('message', async msg => {
 
     if (msg.author.bot) return;
 
@@ -153,7 +153,7 @@ bot.on('message', (msg) => {
     // -------------------------------------------------------------------------------------
 
 
-    // Stats
+    // Help
     if (msg.content.startsWith(prefix + "help")) {
         if(msg.channel.recipient) return
         console.log("help for ".red + msg.author.username + " (" + msg.author + ")" );
@@ -228,25 +228,52 @@ bot.on('message', (msg) => {
             ]
           };
           msg.channel.send({ embed });
+    };
 
-    }
-
+    // ping
+    if (msg.content.startsWith(prefix + "ping")) {
+        if(msg.channel.recipient) return
+        console.log("ping for ".red + msg.author.username + " (" + msg.author + ")" );
+        var hookyEmbed = new Discord.RichEmbed();
+        hook.send(
+            hookyEmbed
+                .addField("ping by",msg.author + " - ``"  + msg.author.username + "#"+ msg.author.discriminator + "`` from ``" + msg.guild.name + "``",true)
+                .setThumbnail(msg.author.avatarURL)
+                .setColor(0xe67e22)
+        )
+        const m = await msg.channel.send("Testing..");
+        const embed = {
+          "color": 7419530,
+          "fields": [
+            {
+              "name": "Latency of the bot",
+              "value": `${m.createdTimestamp - msg.createdTimestamp} ms`
+            },
+            {
+              "name": "Latency of the Discord API",
+              "value": `${Math.round(bot.ping)} ms`
+            }
+          ]
+        };
+        msg.channel.send({ embed }).catch(e => console.error("Error with ping message"));
+    };
     const responseObject = {
         "booo": "**" + msg.author.username + "** BOOOOOOO! :ghost:"
       };
       if(responseObject[msg.content.toLowerCase()]) {
         msg.channel.send(responseObject[msg.content.toLowerCase()]);
-    }
+    };
 
     // Ghosty
     if(msg.content == "ghosty"){
         msg.react('494953448081588240').catch(e => console.error("Error with ghosty reaction"));
-    }
+    };
+
     try {
         const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
         } catch (err) {
         if (err) throw Error('Error words.json not found.')
-    }
+    };
     
     if(msg.content.startsWith("")) {
         const words = msg.content;
@@ -292,7 +319,7 @@ function suprise() {
 
     channel.send(words.list[random]);
     
-}
+};
 
 
 bot.login(TOKEN);
