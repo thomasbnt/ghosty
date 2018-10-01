@@ -181,7 +181,7 @@ bot.on('message', async msg => {
               },
               {
                 "name": prefix + "ping",
-                "value": "try exceeding some of them!"
+                "value": "Test my speed and connection to Discord."
               },
               {
                 "name": "Usefull links",
