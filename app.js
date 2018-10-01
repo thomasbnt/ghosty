@@ -306,20 +306,17 @@ bot.on('message', async msg => {
 });
 
 // Random words in random time
-function suprise() {
-    let channel = bot.channels.find(x => x.name === 'general');
+//function suprise() {
+//    let channel = bot.channels.find(x => x.name === 'general');
+   // try {
+    //    const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
+  //      } catch (err) {
+//      if (err) throw Error('Error words.json not found.')
+//    }
+    //let random = Math.floor(Math.random() * Math.floor(3)); 
+  //  channel.send(words.list[random]);
 
-    try {
-        const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
-        } catch (err) {
-        if (err) throw Error('Error words.json not found.')
-    }
-
-    let random = Math.floor(Math.random() * Math.floor(3)); 
-
-    channel.send(words.list[random]);
-    
-};
+//};
 
 
 bot.login(TOKEN);
