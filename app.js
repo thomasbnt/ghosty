@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client({autoReconnect: true});
 const colors = require("colors");
-const fs = require('fs')
-const path = require('path')
-const os = require('os')
+const consola = require("consola");
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
 const randomcolor = require('randomcolor');
 const moment = require('moment');
 const snekfetch = require('snekfetch');
@@ -13,6 +14,7 @@ try {
     } catch (err) {
     if (err) throw Error('Error config.')
 }
+
 const TOKEN = config.token
 const hookArray1 = config.hookArray1
 const hookArray2 = config.hookArray2
@@ -34,11 +36,13 @@ bot.on("guildCreate", guild => {
      guilds: bot.guilds.size
     })
     .then(console.log('Updating discordbotlist.com status...'))
-    .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
+    .catch(e => consola.error('https://discordbotlist.com unavailable or token invalid.'));
    
-    console.log(` Added on : ${guild.name} (${guild.id})`.bgGreen);
-    console.log("There are  " + bot.guilds.size.toLocaleString()  + " servers -  "  + bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + " users");
-    console.log("");
+
+    console.log(
+        `Added on : ${guild.name} (${guild.id})`.bgGreen,
+        `\nThere are ${bot.guilds.size.toLocaleString()} servers -  ${bot.guilds.reduce((mem, g) => mem += g.memberCount, 0)} users\n`
+    )
     // New Emoji created on the server
     guild.createEmoji('favicon.png', 'ghosty').catch(e => console.info('Error : Missing perms for create emoji Ghosty.'));
 
@@ -60,11 +64,13 @@ bot.on("guildDelete", guild => {
      guilds: bot.guilds.size
     })
     .then(console.log('Updating discordbotlist.com status...'))
-    .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
+    .catch(e => consola.error('https://discordbotlist.com unavailable or token invalid.'));
    
-    console.log(`Bot deleted on : ${guild.name} (${guild.id})`.bgRed);
-    console.log("There are  " + bot.guilds.size.toLocaleString()  + " servers connected -  "  + bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + " users");
-    console.log("");
+    console.log(
+        `Bot deleted on : ${guild.name} (${guild.id})`.bgRed,
+        `\nThere are ${bot.guilds.size.toLocaleString()} servers connected -  ${bot.guilds.reduce((mem, g) => mem += g.memberCount, 0)} users}`
+    )
+
     bot.user.setGame(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  Users 🎃");
     const hookyEmbed = new Discord.RichEmbed();
     hook.send(
@@ -77,7 +83,6 @@ bot.on("guildDelete", guild => {
 
 bot.on("guildMemberAdd", (member) => {
     const guild = member.guild;
-    const embed = new Discord.RichEmbed();
     bot.user.setGame(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  Users 🎃");
     console.log(`>_ ${member.user.username}#${member.user.discriminator} join ${guild.name}`.green);
 });
@@ -98,22 +103,43 @@ bot.on('ready', () => {
     guilds: bot.guilds.size
    })
    .then(console.log('Updating discordbotlist.com status...'))
-   .catch(e => consola.error('https://discordbotlist.com insdisponible or token invalid.'));
+   .catch(e => consola.error('https://discordbotlist.com unavailable or token invalid.'));
 
+    //bot.user.setUsername("Ghosty")
+    //bot.user.setAvatar("./favicon.png")
 
-    bot.user.setActivity(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  users", { type: 'WATCHING' })
+   
+    // SetActivity
+    bot.user.setActivity(`dsc.thomasbnt.fr for support`, { type: 'WATCHING' })
     .catch(console.error);
+    setInterval(game1 => {
+        bot.user.setActivity(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  users", { type: 'WATCHING' })
+        .catch(console.error);
+        setTimeout( game2 => {
+            bot.user.setActivity(`the ${prefix}stats for information`, { type: 'WATCHING' })
+            .catch(console.error);
+            setTimeout(game3 => {
+                bot.user.setActivity(`dsc.thomasbnt.fr for support`, { type: 'WATCHING' })
+                .catch(console.error);
+            }, 100000)
+        }, 100000)
+    }, 300000)
 
-
-    console.log("Connected to  " + bot.user.username.red + ' #'.red + bot.user.discriminator.red);
-    console.log("> Numbers of users :       ".blue +  bot.guilds.reduce((mem, g) => mem += g.memberCount, 0));
-    console.log("> Numbers of channels :    ".green + bot.channels.size);
-    console.log("> Numbers of servers :     ".red + bot.guilds.size.toLocaleString());
-    console.log("> Numbers of emojis :      ".cyan + bot.emojis.size);
-    console.log("> Version :                ".yellow + versionofthebot);
+    console.log(
+        `Connected to ${bot.user.username.red}${"#".red}${bot.user.discriminator.red}\n`,
+        `${"> Numbers of users :       ".blue} ${bot.guilds.reduce((mem, g) => mem += g.memberCount, 0)}\n`,
+        `${"> Numbers of channels :    ".green} ${bot.channels.size}\n`,
+        `${"> Numbers of servers :     ".red} ${bot.guilds.size.toLocaleString()}\n`,
+        `${"> Numbers of emojis :      ".cyan} ${bot.emojis.size}\n`,
+        `${"> Version :                ".yellow} ${versionofthebot}\n`
+    )
+    
+    setInterval(x => {
+        suprise();
+    }, 450000)
 });
 
-bot.on('message', (msg) => {
+bot.on('message', async msg => {
 
     if (msg.author.bot) return;
 
@@ -127,6 +153,44 @@ bot.on('message', (msg) => {
     // -------------------------------------------------------------------------------------
 
 
+    // Help
+    if (msg.content.startsWith(prefix + "help")) {
+        if(msg.channel.recipient) return
+        console.log("help for ".red + msg.author.username + " (" + msg.author + ")" );
+        var hookyEmbed = new Discord.RichEmbed();
+        hook.send(
+            hookyEmbed
+                .addField("help by",msg.author + " - ``"  + msg.author.username + "#"+ msg.author.discriminator + "`` from ``" + msg.guild.name + "``",true)
+                .setThumbnail(msg.author.avatarURL)
+                .setColor(0xe67e22)
+        )
+        const embed = {
+            "description": "Hello it's me, Ghosty! I add fun commands like random texts, animation in the servers and I like the reactions! I do not add a moderation command, I am only useful for the Halloween event. ",
+            "color": 13319958,
+            "footer": {
+              "icon_url": "https://ghosty.thomasbnt.fr/assets/img/img-head.png",
+              "text": "I'm a Ghost-y, my role? I must be scary"
+            },
+            "thumbnail": {
+              "url": "https://ghosty.thomasbnt.fr/assets/img/img-head.png"
+            },
+            "fields": [
+              {
+                "name": prefix + "stats",
+                "value": "Look at my statistics, numbers everywhere !"
+              },
+              {
+                "name": prefix + "ping",
+                "value": "try exceeding some of them!"
+              },
+              {
+                "name": "Usefull links",
+                "value": "[Website](https://ghosty.thomasbnt.fr/?utm_source=Direct_link_command_help) • [Add me](https://ghosty.thomasbnt.fr/add/?utm_source=Direct_link_command_help) • [Upvote on DBL](https://discordbotlist.com/bots/369202881955495936) • [GitHub](https://github.com/thomasbnt/ghosty) • [Contributors](https://github.com/thomasbnt/ghosty#contributors)"
+              }
+            ]
+          };
+          msg.channel.send({ embed });
+    };
     // Stats
     if (msg.content.startsWith(prefix + "stats")) {
         if(msg.channel.recipient) return
@@ -154,39 +218,66 @@ bot.on('message', (msg) => {
                 {
                     "name": "Uptime  ",
                     "value": (Math.round(bot.uptime / (1000 * 60 * 60))) + " hour(s), " + (Math.round(bot.uptime / (1000 * 60)) % 60) + " minute(s), and " + (Math.round(bot.uptime / 1000) % 60) + " second(s)" + "",
-                    "inline": false
+                    "inline": true
                 },
                 {
                     "name": "Version  ",
-                    "value": "V " + versionofthebot + "",
-                    "inline": false
-                },
-                {
-                    "name": "More soon !",
-                    "value": "Don't worry, the bot will be online for halloween event 2o18 !",
-                    "inline": false
+                    "value": versionofthebot + "",
+                    "inline": true
                 }
             ]
           };
           msg.channel.send({ embed });
+    };
 
-    }
-
+    // ping
+    if (msg.content.startsWith(prefix + "ping")) {
+        if(msg.channel.recipient) return
+        console.log("ping for ".red + msg.author.username + " (" + msg.author + ")" );
+        var hookyEmbed = new Discord.RichEmbed();
+        hook.send(
+            hookyEmbed
+                .addField("ping by",msg.author + " - ``"  + msg.author.username + "#"+ msg.author.discriminator + "`` from ``" + msg.guild.name + "``",true)
+                .setThumbnail(msg.author.avatarURL)
+                .setColor(0xe67e22)
+        )
+        const m = await msg.channel.send("Testing..");
+        const embed = {
+          "color": 7419530,
+          "fields": [
+            {
+              "name": "Latency of the bot",
+              "value": `${m.createdTimestamp - msg.createdTimestamp} ms`
+            },
+            {
+              "name": "Latency of the Discord API",
+              "value": `${Math.round(bot.ping)} ms`
+            }
+          ]
+        };
+        msg.channel.send({ embed }).catch(e => console.error("Error with ping message"));
+    };
     const responseObject = {
         "booo": "**" + msg.author.username + "** BOOOOOOO! :ghost:"
       };
       if(responseObject[msg.content.toLowerCase()]) {
         msg.channel.send(responseObject[msg.content.toLowerCase()]);
-    }
+    };
 
     // Ghosty
     if(msg.content == "ghosty"){
-        msg.react('478615972216045568');
-    }
-    // Ghost
+        msg.react('494953448081588240').catch(e => console.error("Error with ghosty reaction"));
+    };
+
+    try {
+        const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
+        } catch (err) {
+        if (err) throw Error('Error words.json not found.')
+    };
+    
     if(msg.content.startsWith("")) {
         const words = msg.content;
-        if(/g+h+o+s+t+/i.test(words)) {
+        if(/g+h+o+s+t+/i.test(words)) { // Ghost
             if(/^g+h+o+s+t+$/i.test(words)) {
                 msg.react("👻");
             } else if(/^g+h+o+s+t+/i.test(words)) {
@@ -198,12 +289,7 @@ bot.on('message', (msg) => {
                     msg.react("👻");
                 }
             }
-        }
-    }
-    // Jack
-    if(msg.content.startsWith("")) {
-        const words = msg.content;
-        if(/j+a+c+k+/i.test(words)) {
+        }else if(/j+a+c+k+/i.test(words)) { // Jack
             if(/^j+a+c+k+$/i.test(words)) {
                 msg.react("🎃");
             } else if(/^j+a+c+k+/i.test(words)) {
@@ -218,5 +304,19 @@ bot.on('message', (msg) => {
         }
     }
 });
+
+// Random words in random time
+//function suprise() {
+//    let channel = bot.channels.find(x => x.name === 'general');
+   // try {
+    //    const words = JSON.parse(fs.readFileSync(path.join(__dirname, '.', 'words.json'), 'utf8'))
+  //      } catch (err) {
+//      if (err) throw Error('Error words.json not found.')
+//    }
+    //let random = Math.floor(Math.random() * Math.floor(3)); 
+  //  channel.send(words.list[random]);
+
+//};
+
 
 bot.login(TOKEN);
