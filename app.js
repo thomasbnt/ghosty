@@ -134,9 +134,9 @@ bot.on('ready', () => {
         `${"> Version :                ".yellow} ${versionofthebot}\n`
     )
     
-    setInterval(x => {
-        suprise();
-    }, 450000)
+    //setInterval(x => {
+      //  suprise();
+    //}, 450000)
 });
 
 bot.on('message', async msg => {
