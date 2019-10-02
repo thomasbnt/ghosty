@@ -1,10 +1,11 @@
-# Ghosty
+# Ghosty v2 - 2019
+
+<img src="ForIcon.png" alt="Logo Ghosty" align="right" /> 
 
 ##### Bot Discord that adds fun commands specifically for Halloween.
 
+[![Follow me on Twitter](https://flat.badgen.net/badge/Follow%20me/on%20Twitter/33A1F2?icon=twitter)](https://twitter.com/Hyprimort)
 
-###### >_ Official Website : [https://ghosty.thomasbnt.fr](https://ghosty.thomasbnt.fr/)
-###### >_ Official Discord Server : [https://dsc.thomasbnt.fr](https://dsc.thomasbnt.fr)
 
 ## Getting Started
 
@@ -12,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install 
 
 ```diff
 + NPM (5.3.0)
@@ -21,8 +22,6 @@ What things you need to install the software and how to install them
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
 Say what the step will be
 
 ```
@@ -30,8 +29,8 @@ npm install
 ```
 
 + Enter your `token` in `config.json`
-+ Enter your tokens for `Webhook` (optionnal)
-+ Enter your token for [discordbotlist.com](https://discordbotlist.com) (optionnal)
++ Enter your tokens for `Webhook`
++ Enter your token for [discordbotlist.com](https://discordbotlist.com)
 
 
 And you can start with :
@@ -48,12 +47,10 @@ npm start
 
 * **Thomas Bnt** - *Initial work* - [Github](https://github.com/thomasbnt) - [Website](https://thomasbnt.fr/)
 
-* **UndeadNinjaBit** - *for edited the icon* [Github](https://github.com/UndeadNinjabit)
-
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under **Apache License 2.0** - see the [LICENSE](LICENSE) file for details
+This project is licensed under **GNU GPLv3.0** - see the [LICENSE](LICENSE) file for details
 
 
