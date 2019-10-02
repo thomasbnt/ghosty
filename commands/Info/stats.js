@@ -16,7 +16,7 @@ exports.run = async (bot, WebhookPrivate, WebhookPublic, msg) => {
     console.log(bot.ls.info, bot.config.prefix + "stats " + " by " + msg.author.tag + " (" + msg.author.id + ")")
     WebhookPrivate.send(new Discord.RichEmbed()
         .setColor(bot.config.PrimaryColor)
-        .setDescription("** " + bot.config.prefix + "stats ** - By " + msg.author)
+        .setDescription("** " + bot.config.prefix + "stats ** — By " + msg.author.tag)
         .setFooter("ID : " + msg.author.id, msg.author.avatarURL)
     )
 
