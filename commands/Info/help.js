@@ -13,7 +13,6 @@ exports.run = async (bot, WebhookPrivate, WebhookPublic, msg) => {
         "I do not add a moderation command, I am only useful for the Halloween event. ")
         .setThumbnail(bot.user.avatarURL)
         .addField(`${bot.config.prefix}stats`,"Look at my statistics, numbers everywhere! ", true)
-        .addField(`${bot.config.prefix}ping`,"Test my speed and connection to Discord.", true)
         .addField(`Usefull links`,`[Add me on your server !](https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=201714752) • [Upvote on DBL](https://discordbotlist.com/bots/369202881955495936) • [GitHub](https://github.com/thomasbnt/ghosty) • [Contributors](https://github.com/thomasbnt/ghosty#contributors)`)
         .setFooter("I'm a Ghost-y, my role? I must be scary.", msg.author.avatarURL)
     ) 
