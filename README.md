@@ -1,7 +1,5 @@
 # Ghosty v2 - 2019
 
-<img src="ForIcon.png" alt="Logo Ghosty" align="right" /> 
-
 ##### Bot Discord that adds fun commands specifically for Halloween.
 
 [![Follow me on Twitter](https://flat.badgen.net/badge/Follow%20me/on%20Twitter/33A1F2?icon=twitter)](https://twitter.com/Hyprimort)
