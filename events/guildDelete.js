@@ -9,7 +9,10 @@ module.exports = (bot, WebhookPrivate, WebhookPublic, member) => {
     // API Discord Bot List.com
     snekfetch.post(`https://discordbotlist.com/api/bots/${bot.user.id}/stats`)
     .set("Authorization", `Bot ${bot.config.tokendiscordbotlistcom}`)
-    .send({guilds: bot.guilds.size})
+    .send({
+        guilds: bot.guilds.size,
+        users: bot.guilds.reduce((mem, g) => mem += g.memberCount, 0)
+    })
     .then(console.log(bot.ls.success,'Updated discordbotlist.com status !'))
     .catch(e => console.log(bot.ls.error,'https://discordbotlist.com unavailable or token invalid.'))
 
