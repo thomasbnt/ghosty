@@ -5,7 +5,7 @@
 ##### Bot Discord that adds fun commands specifically for Halloween.
 
 [![Follow me on Twitter](https://flat.badgen.net/badge/Follow%20me/on%20Twitter/33A1F2?icon=twitter)](https://twitter.com/Hyprimort)
-
+[![Upvote me on DiscordBotList.com](https://discordbotlist.com/bots/369202881955495936/widget)](https://discordbotlist.com/bots/369202881955495936)
 
 ## Getting Started
 
