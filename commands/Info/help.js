@@ -10,7 +10,8 @@ exports.run = async (bot, WebhookPrivate, WebhookPublic, msg) => {
     msg.channel.send(new Discord.RichEmbed()
         .setColor(bot.config.PrimaryColor)
         .setDescription("Hello it's me, Ghosty! I add fun commands like random texts, animation in the servers and I like the reactions!" + 
-        "I do not add a moderation command, I am only useful for the Halloween event. ")
+        "I do not add a moderation command, I am only useful for the Halloween event.\n\n" +
+	"This bot is **Open Source**, which means that _anyone_ [can participate in the project](https://github.com/thomasbnt/ghosty), to add commands or features related to Halloween!")
         .setThumbnail(bot.user.avatarURL)
         .addField(`${bot.config.prefix}stats`,"Look at my statistics, numbers everywhere! ", true)
         .addField(`Usefull links`,`[Add me on your server !](https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=201714752) • [Upvote on DBL](https://discordbotlist.com/bots/369202881955495936) • [GitHub](https://github.com/thomasbnt/ghosty) • [Contributors](https://github.com/thomasbnt/ghosty#contributors)`)
