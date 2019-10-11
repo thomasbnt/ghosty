@@ -36,9 +36,11 @@ bot.commands = new Discord.Collection()
 bot.ls = require('log-symbols')
 
 bot.updatePresence = function updatePresence() {
-  bot.user.setActivity(bot.guilds.size.toLocaleString()  + "  servers - "+ bot.guilds.reduce((mem, g) => mem += g.memberCount, 0) + "  Users 🎃", {
-    type: "WATCHING"
-  })
+  let Statuses = [`${bot.guilds.size.toLocaleString()} servers`,`${bot.guilds.reduce((mem, g) => mem += g.memberCount, 0)} Users 🎃`, `${bot.config.prefix}help`, `${bot.config.prefix}stats`,`🕷`, `🍬`]
+    setInterval(function(){
+      let status = Statuses[Math.floor(Math.random()*Statuses.length)]
+      bot.user.setActivity(status, {type: "WATCHING"})
+    }, 240000)
 }
 
 // -------------------- My Spoooky C0re --------------------
