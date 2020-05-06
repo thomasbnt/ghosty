@@ -5,7 +5,8 @@
 
 ##### Bot Discord that adds fun commands specifically for Halloween.
 
-[![Follow me on Twitter](https://flat.badgen.net/badge/Follow%20me/on%20Twitter/33A1F2?icon=twitter)](https://twitter.com/Hyprimort)
+[![Support me on BMC](https://img.shields.io/badge/Support%20me-☕-orange.svg?style=for-the-badge)](https://www.buymeacoffee.com/thomasbnt)
+[![Twitter Follow](https://img.shields.io/twitter/follow/Thomasbnt_?color=%231DA1F2&label=Follow%20me&logo=Twitter&style=for-the-badge)](https://twitter.com/Thomasbnt_)
 
 ## Getting Started
 
