@@ -36,7 +36,7 @@ bot.commands = new Discord.Collection()
 bot.ls = require('log-symbols')
 
 bot.updatePresence = function updatePresence() {
-  let Statuses = [ `${bot.config.prefix}help`, `${bot.config.prefix}stats`,`🕷`, `🍬`]
+  let Statuses = [ `${bot.config.prefix}help`, `${bot.config.prefix}stats`]
     setInterval(function(){
       let status = Statuses[Math.floor(Math.random()*Statuses.length)]
       bot.user.setActivity(status, {type: "WATCHING"})
