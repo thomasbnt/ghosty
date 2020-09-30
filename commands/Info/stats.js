@@ -13,9 +13,6 @@ exports.run = async (bot, WebhookPrivate, WebhookPublic, msg) => {
         .addField("Numbers of users", `**${bot.guilds.reduce((mem, g) => mem += g.memberCount, 0)}** Users who will be ghosts`, true)
         .addField("Numbers of Channels", bot.channels.size, true)
         .addField("Numbers of emojis", bot.emojis.size, true)
-        .addField("__", "Technical informations :",false)
-        .addField("Version of Discord.js", Discord.version, true)
-        .addField("Type of hosting", "VPS Debian-9.4-x86_64", true)
         .setFooter("I'm a Ghost-y, my role? I must be scary.", msg.author.avatarURL)
     )
 
