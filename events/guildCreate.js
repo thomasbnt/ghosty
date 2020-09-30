@@ -7,7 +7,7 @@ module.exports = (bot, WebhookPrivate, WebhookPublic, member) => {
     bot.updatePresence()
 
     // API Discord Bot List.com
-    snekfetch.post(`https://discordbotlist.com/api/bots/${bot.user.id}/stats`)
+    snekfetch.post(`https://discordbotlist.com/api/v1/bots/${bot.user.id}/stats`)
     .set("Authorization", `Bot ${bot.config.tokendiscordbotlistcom}`)
     .send({
         guilds: bot.guilds.size,
