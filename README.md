@@ -1,6 +1,6 @@
 # Ghosty v2 - 2019
 
-[<img src="https://discordbotlist.com/bots/369202881955495936/widget" alt="Logo Ghosty" align="right" />](https://discordbotlist.com/bots/369202881955495936)
+[<img src="https://discordbotlist.com/api/bots/369202881955495936/widget?cache=noplz" alt="Logo Ghosty" align="right" />](https://discordbotlist.com/bots/369202881955495936)
 
 
 ##### Bot Discord that adds fun commands specifically for Halloween.
