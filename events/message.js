@@ -5,8 +5,9 @@ module.exports = async (bot, WebhookPrivate, WebhookPublic, msg) => {
   if (msg.author.bot) return
   if (msg.author.id === bot.user.id) return
   if (msg.channel.recipient) return
+  let content = msg.content.toLowerCase()
 
-  if (msg.content.includes("web") || msg.content.includes("spider") || msg.content.includes("araignée")) {
+  if (content.includes("web") || content.includes("spider") || content.includes("araignée")) {
     if (!msg.guild.member(bot.user).hasPermission("ADD_REACTIONS")) {
         console.log(bot.ls.warning, "The bot is not allowed to add reactions.")
         return
@@ -20,7 +21,7 @@ module.exports = async (bot, WebhookPrivate, WebhookPublic, msg) => {
     )
   }
   }
-  if (msg.content.includes("ghost") || msg.content.includes("fantome") || msg.content.includes("boo")) {
+  if (content.includes("ghost") || content.includes("fantome") || content.includes("boo")) {
     if (!msg.guild.member(bot.user).hasPermission("ADD_REACTIONS")) {
         console.log(bot.ls.warning, "The bot is not allowed to add reactions.")
         return
@@ -33,7 +34,7 @@ module.exports = async (bot, WebhookPrivate, WebhookPublic, msg) => {
     )
     }
   }
-  if (msg.content.includes("jack") || msg.content.includes("jacky")) {
+  if (content.includes("jack") || content.includes("jacky")) {
     if (!msg.guild.member(bot.user).hasPermission("ADD_REACTIONS")) {
         console.log(bot.ls.warning, "The bot is not allowed to add reactions.")
         return
@@ -46,7 +47,7 @@ module.exports = async (bot, WebhookPrivate, WebhookPublic, msg) => {
     )
     }
   }
-  if (msg.content.includes("candy") || msg.content.includes("sugar") || msg.content.includes("sweet") || msg.content.includes("bonbon")) {
+  if (content.includes("candy") || content.includes("sugar") || content.includes("sweet") || content.includes("bonbon")) {
     if (!msg.guild.member(bot.user).hasPermission("ADD_REACTIONS")) {
         console.log(bot.ls.warning, "The bot is not allowed to add reactions.")
         return
