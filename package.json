@@ -21,7 +21,7 @@
     "humanize-duration": "^3.21.0",
     "klaw": "^3.0.0",
     "log-symbols": "^3.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "snekfetch": "^4.0.4"
   }
 }
